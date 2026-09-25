@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Aura Fitness</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header" id="app-header"></header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div>
+      <h1 id="greeting">Welcome back</h1>
+      <p id="dateline"></p>
+    </div>
+    <a href="log-workout.html" class="btn btn-primary">Log a workout</a>
+  </div>
+
+  <div class="sample-prompt" id="sample-prompt" style="display:none; margin-bottom: 28px;">
+    <p><strong>Nothing logged yet.</strong> Load a few weeks of realistic sample activity to see the dashboard, routine, and progress chart in action.</p>
+    <button type="button" class="btn btn-dark" id="load-sample-btn">Load sample data</button>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat hero">
+      <div class="k">Workouts this month</div>
+      <div class="v" id="stat-workouts">0</div>
+    </div>
+    <div class="stat tint">
+      <div class="k">Calories burned</div>
+      <div class="v" id="stat-calories">0<span class="u">kcal</span></div>
+    </div>
+    <div class="stat plain">
+      <div class="k">Average intensity</div>
+      <div class="v" id="stat-intensity" style="font-size:26px;">—</div>
+    </div>
+    <div class="stat plain">
+      <div class="k">Current weight</div>
+      <div class="v" id="stat-weight" style="font-size:26px;">—</div>
+    </div>
+  </div>
+
+  <div class="dash-grid">
+    <section class="panel">
+      <div class="panel-title">
+        <h2>Recent workouts</h2>
+        <a href="log-workout.html" class="btn btn-outline">Log another</a>
+      </div>
+      <div id="recent-workouts"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <h2>Active routine</h2>
+      </div>
+      <div id="active-routine"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-foot">Aura Fitness — a client-side fitness tracker. Your data stays in this browser.</footer>
+
+<script src="js/db.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

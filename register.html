@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Create your Aura Fitness account.">
+<title>Create account — Aura Fitness</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <section class="auth-side">
+    <div class="mark">Aura<span>Fitness</span></div>
+    <div class="pitch">
+      <h1>Start your first log today.</h1>
+      <p>Set a goal, pick a routine, and log your first workout in under two minutes.</p>
+    </div>
+    <div class="tally">
+      <div><span class="n">3</span><span class="k">steps from sign-up to your first log</span></div>
+      <div><span class="n">0</span><span class="k">cost, no card required</span></div>
+    </div>
+  </section>
+
+  <section class="auth-form-side">
+    <div class="auth-card">
+      <h2>Create your account</h2>
+      <p>It takes about a minute. Fields marked <span class="req">*</span> are required.</p>
+
+      <div class="form-msg error" id="form-msg"></div>
+
+      <form id="register-form" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="firstName">First name<span class="req">*</span></label>
+            <input type="text" id="firstName" required>
+            <span class="field-error" id="firstName-error"></span>
+          </div>
+          <div class="field">
+            <label for="lastName">Last name<span class="req">*</span></label>
+            <input type="text" id="lastName" required>
+            <span class="field-error" id="lastName-error"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="username">Username<span class="req">*</span></label>
+          <input type="text" id="username" autocomplete="username" required>
+          <span class="field-error" id="username-error"></span>
+          <span class="field-check" id="username-check"></span>
+        </div>
+
+        <div class="field">
+          <label for="email">Email<span class="req">*</span></label>
+          <input type="email" id="email" autocomplete="email" required>
+          <span class="field-error" id="email-error"></span>
+          <span class="field-check" id="email-check"></span>
+        </div>
+
+        <div class="field-row">
+          <div class="field field-with-action">
+            <label for="password">Password<span class="req">*</span></label>
+            <input type="password" id="password" autocomplete="new-password" required minlength="8">
+            <button type="button" class="field-action-btn" id="toggle-password">Show</button>
+            <span class="field-error" id="password-error"></span>
+          </div>
+          <div class="field field-with-action">
+            <label for="confirmPassword">Confirm password<span class="req">*</span></label>
+            <input type="password" id="confirmPassword" autocomplete="new-password" required minlength="8">
+            <button type="button" class="field-action-btn" id="toggle-confirm">Show</button>
+            <span class="field-error" id="confirmPassword-error"></span>
+          </div>
+        </div>
+        <div class="strength-meter" id="strength-meter"><i></i><i></i><i></i><i></i></div>
+        <div class="strength-label" id="strength-label">At least 8 characters, with a letter and a number.</div>
+
+        <div class="field-row" style="margin-top:18px;">
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" min="10" max="100">
+            <span class="field-error" id="age-error"></span>
+          </div>
+          <div class="field">
+            <label for="fitnessGoal">Fitness goal</label>
+            <select id="fitnessGoal">
+              <option>General Fitness</option>
+              <option>Lose Weight</option>
+              <option>Build Muscle</option>
+              <option>Build Strength</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="height">Height (cm)</label>
+            <input type="number" id="height" min="100" max="250">
+            <span class="field-error" id="height-error"></span>
+          </div>
+          <div class="field">
+            <label for="weight">Weight (kg)</label>
+            <input type="number" id="weight" min="30" max="300" step="0.1">
+            <span class="field-error" id="weight-error"></span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="register-btn">Create account</button>
+      </form>
+
+      <p class="form-foot">Already have an account? <a href="index.html">Log in</a>.</p>
+    </div>
+  </section>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/validate.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/register.js"></script>
+</body>
+</html>

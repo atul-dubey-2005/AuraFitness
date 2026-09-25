@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Routines — Aura Fitness</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header" id="app-header"></header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div>
+      <h1>Routines</h1>
+      <p>Pick a program that matches your goal, then check what's due each day.</p>
+    </div>
+  </div>
+
+  <div class="filters">
+    <div class="field">
+      <label for="goal-filter">Filter by goal</label>
+      <select id="goal-filter">
+        <option value="">All goals</option>
+        <option>General Fitness</option>
+        <option>Lose Weight</option>
+        <option>Build Muscle</option>
+        <option>Build Strength</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card-grid" id="routine-grid" style="margin-bottom: 34px;"></div>
+
+  <section class="panel" id="routine-detail" style="display:none;">
+    <div class="panel-title">
+      <h2 id="detail-name"></h2>
+      <button class="btn btn-primary" id="assign-btn">Set as my routine</button>
+    </div>
+    <div class="tags" id="detail-tags" style="margin-bottom:18px;"></div>
+
+    <div class="day-strip" id="day-strip"></div>
+    <div id="day-exercises"></div>
+  </section>
+</main>
+
+<footer class="site-foot">Aura Fitness — a client-side fitness tracker. Your data stays in this browser.</footer>
+
+<script src="js/db.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/exercise-icons.js"></script>
+<script src="js/exercise-modal.js"></script>
+<script src="js/routines.js"></script>
+</body>
+</html>

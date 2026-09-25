@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress — Aura Fitness</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header" id="app-header"></header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div>
+      <h1>Progress</h1>
+      <p>Log measurements over time and watch the trend, not just the day.</p>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat hero">
+      <div class="k">Weight change since first log</div>
+      <div class="v" id="stat-change">—</div>
+    </div>
+    <div class="stat tint">
+      <div class="k">Latest weight</div>
+      <div class="v" id="stat-latest">—</div>
+    </div>
+    <div class="stat plain">
+      <div class="k">Entries logged</div>
+      <div class="v" id="stat-count">0</div>
+    </div>
+  </div>
+
+  <div class="dash-grid">
+    <section class="panel">
+      <div class="panel-title"><h2>Weight over time</h2></div>
+      <div class="chart-wrap">
+        <div class="bars" id="weight-bars"></div>
+      </div>
+
+      <div class="panel-title" style="margin-top:26px;"><h2>History</h2></div>
+      <div id="progress-table"></div>
+    </section>
+
+    <aside class="panel">
+      <div class="panel-title"><h2>Log measurements</h2></div>
+      <div class="form-msg error" id="form-msg"></div>
+      <form id="progress-form" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="logDate">Date<span class="req">*</span></label>
+            <input type="date" id="logDate" required>
+            <span class="field-error" id="logDate-error"></span>
+          </div>
+          <div class="field">
+            <label for="weight">Weight (kg)<span class="req">*</span></label>
+            <input type="number" id="weight" step="0.1" min="20" max="400" required>
+            <span class="field-error" id="weight-error"></span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="bodyFat">Body fat %</label>
+          <input type="number" id="bodyFat" step="0.1" min="1" max="70">
+          <span class="field-error" id="bodyFat-error"></span>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="chest">Chest (cm)</label>
+            <input type="number" id="chest" step="0.1" min="20" max="250">
+            <span class="field-error" id="chest-error"></span>
+          </div>
+          <div class="field">
+            <label for="waist">Waist (cm)</label>
+            <input type="number" id="waist" step="0.1" min="20" max="250">
+            <span class="field-error" id="waist-error"></span>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="hip">Hip (cm)</label>
+            <input type="number" id="hip" step="0.1" min="20" max="250">
+            <span class="field-error" id="hip-error"></span>
+          </div>
+          <div class="field">
+            <label for="arm">Arm (cm)</label>
+            <input type="number" id="arm" step="0.1" min="10" max="100">
+            <span class="field-error" id="arm-error"></span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="thigh">Thigh (cm)</label>
+          <input type="number" id="thigh" step="0.1" min="10" max="150">
+          <span class="field-error" id="thigh-error"></span>
+        </div>
+        <div class="field">
+          <label for="notes">Notes</label>
+          <textarea id="notes" placeholder="Optional"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="save-progress-btn">Save entry</button>
+      </form>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-foot">Aura Fitness — a client-side fitness tracker. Your data stays in this browser.</footer>
+
+<script src="js/db.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/validate.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/progress.js"></script>
+</body>
+</html>

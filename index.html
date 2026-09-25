@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Aura Fitness — log workouts, track progress, and follow a routine, all in your browser.">
+<title>Log in — Aura Fitness</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="auth-shell">
+  <section class="auth-side">
+    <div class="mark">Aura<span>Fitness</span></div>
+    <div class="pitch">
+      <h1>Track the work. Trust the numbers.</h1>
+      <p>Log every session, watch your routine unfold week by week, and see your progress add up — no guessing, just the record.</p>
+    </div>
+    <div class="tally">
+      <div><span class="n">1,000+</span><span class="k">exercises in the library</span></div>
+      <div><span class="n">8</span><span class="k">tables of your history, always yours</span></div>
+      <div><span class="n">5</span><span class="k">ready-built routines to start from</span></div>
+    </div>
+  </section>
+
+  <section class="auth-form-side">
+    <div class="auth-card">
+      <h2>Welcome back</h2>
+      <p>Log in to see today's numbers.</p>
+
+      <div class="form-msg error" id="form-msg"></div>
+
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="username">Username<span class="req">*</span></label>
+          <input type="text" id="username" name="username" autocomplete="username" required>
+          <span class="field-error" id="username-error"></span>
+        </div>
+        <div class="field field-with-action">
+          <label for="password">Password<span class="req">*</span></label>
+          <input type="password" id="password" name="password" autocomplete="current-password" required>
+          <button type="button" class="field-action-btn" id="toggle-password">Show</button>
+          <span class="field-error" id="password-error"></span>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="login-btn">Log in</button>
+      </form>
+
+      <p class="form-foot">New here? <a href="register.html">Create an account</a>.</p>
+
+      <div class="demo-box">
+        <p>Curious first? Explore a fully populated account — sample workouts, progress history, and an assigned routine — with one click.</p>
+        <button type="button" class="btn btn-outline btn-block" id="demo-btn">Try the demo account</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="js/db.js"></script>
+<script src="js/validate.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log Workout — Aura Fitness</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header" id="app-header"></header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div>
+      <h1>Log a workout</h1>
+      <p>Record what you did today — exercises are optional if you just want the totals on record.</p>
+    </div>
+  </div>
+
+  <div class="dash-grid">
+    <section class="panel">
+      <div class="form-msg error" id="form-msg"></div>
+
+      <form id="workout-form" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="workoutDate">Date<span class="req">*</span></label>
+            <input type="date" id="workoutDate" required>
+            <span class="field-error" id="workoutDate-error"></span>
+          </div>
+          <div class="field">
+            <label for="workoutType">Workout type</label>
+            <select id="workoutType">
+              <option>Strength</option>
+              <option>Cardio</option>
+              <option>HIIT</option>
+              <option>CrossFit</option>
+              <option>Bodybuilding</option>
+              <option>Powerlifting</option>
+              <option>Olympic Weightlifting</option>
+              <option>Calisthenics</option>
+              <option>Functional Training</option>
+              <option>Circuit Training</option>
+              <option>Flexibility</option>
+              <option>Mobility</option>
+              <option>Yoga</option>
+              <option>Pilates</option>
+              <option>Boxing</option>
+              <option>Kickboxing</option>
+              <option>Martial Arts</option>
+              <option>Running</option>
+              <option>Cycling</option>
+              <option>Swimming</option>
+              <option>Rowing</option>
+              <option>Dance Fitness</option>
+              <option>Sports</option>
+              <option>Hiking</option>
+              <option>Core Training</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="durationMinutes">Duration (minutes)<span class="req">*</span></label>
+            <input type="number" id="durationMinutes" min="1" max="300" required>
+            <span class="field-error" id="durationMinutes-error"></span>
+          </div>
+          <div class="field">
+            <label for="intensity">Intensity</label>
+            <select id="intensity">
+              <option>Low</option>
+              <option selected>Moderate</option>
+              <option>High</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="panel-title" style="margin-top: 6px;">
+          <h2 style="font-size:16px;">Exercises</h2>
+          <button type="button" class="btn btn-outline" id="add-exercise">Add exercise</button>
+        </div>
+        <div id="exercise-rows"></div>
+
+        <div class="field" style="margin-top: 18px;">
+          <label for="notes">Notes</label>
+          <textarea id="notes" placeholder="How did it feel? Anything to remember for next time?"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="save-workout-btn">Save workout</button>
+      </form>
+    </section>
+
+    <aside class="panel">
+      <div class="panel-title"><h2>Estimated calories</h2></div>
+      <div class="stat hero" style="padding:22px;">
+        <div class="k">Based on type, duration &amp; intensity</div>
+        <div class="v" id="calorie-estimate">0<span class="u">kcal</span></div>
+      </div>
+      <p style="margin-top:16px;">This estimate updates as you fill in the form. You can still save the workout even if you skip individual exercises.</p>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-foot">Aura Fitness — a client-side fitness tracker. Your data stays in this browser.</footer>
+
+<script src="js/db.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/validate.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/log-workout.js"></script>
+</body>
+</html>

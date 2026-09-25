@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercise Library — Aura Fitness</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header" id="app-header"></header>
+
+<main class="wrap">
+  <div class="page-head">
+    <div>
+      <h1>Exercise library</h1>
+      <p id="library-subtitle">Search and filter the movement bank used across every routine.</p>
+    </div>
+  </div>
+
+  <div class="filters">
+    <div class="field">
+      <label for="search">Search</label>
+      <input type="text" id="search" placeholder="Search by name…">
+    </div>
+    <div class="field">
+      <label for="category">Category</label>
+      <select id="category">
+        <option value="">All categories</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="muscle">Muscle group</label>
+      <select id="muscle">
+        <option value="">All muscle groups</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="difficulty">Difficulty</label>
+      <select id="difficulty">
+        <option value="">Any difficulty</option>
+        <option>Beginner</option>
+        <option>Intermediate</option>
+        <option>Advanced</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card-grid" id="exercise-grid"></div>
+</main>
+
+<footer class="site-foot">Aura Fitness — a client-side fitness tracker. Your data stays in this browser.</footer>
+
+<script src="js/db.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/exercise-icons.js"></script>
+<script src="js/exercise-modal.js"></script>
+<script src="js/exercises.js"></script>
+</body>
+</html>
