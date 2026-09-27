@@ -84,31 +84,18 @@
       return;
     }
     host.innerHTML = `<table>
-      <thead><tr><th>Exercise</th><th>Category</th><th>Difficulty</th><th>Equipment</th><th></th></tr></thead>
+      <thead><tr><th>Exercise</th><th>Category</th><th>Muscle group</th><th>Equipment</th></tr></thead>
       <tbody>
         ${exs.map(x => `
           <tr>
-            <td>
-              <div class="routine-ex-row">
-                <div class="routine-ex-icon">${ExerciseIcons.svg(x.icon, 34)}</div>
-                <span>${x.name}</span>
-              </div>
-            </td>
+            <td>${x.name}</td>
             <td>${x.category}</td>
-            <td><span class="badge ${x.difficulty === 'Advanced' ? 'coral' : x.difficulty === 'Beginner' ? 'volt' : ''}">${x.difficulty}</span></td>
+            <td>${x.muscleGroup}</td>
             <td>${x.equipment}</td>
-            <td><button type="button" class="btn btn-ghost view-ex-btn" data-id="${x.id}">Steps &amp; photo</button></td>
           </tr>
         `).join('')}
       </tbody>
     </table>`;
-
-    host.querySelectorAll('.view-ex-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const ex = AuraDB.getExerciseById(btn.dataset.id);
-        if (ex) openExerciseModal(ex);
-      });
-    });
   }
 
   goalFilter.addEventListener('change', renderGrid);

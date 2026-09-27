@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Progress — Aura Fitness</title>
+<meta name="theme-color" content="#14171a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Aura Fitness — log workouts, track progress and follow routines, right in your browser.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%2314171a%22/%3E%3Cpath d=%22M30 62 L46 62 L40 82 L74 46 L56 46 L64 18 Z%22 fill=%22%23c8ff3d%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -46,59 +54,51 @@
 
     <aside class="panel">
       <div class="panel-title"><h2>Log measurements</h2></div>
-      <div class="form-msg error" id="form-msg"></div>
+      <div class="form-msg success" id="form-msg"></div>
       <form id="progress-form" novalidate>
         <div class="field-row">
           <div class="field">
-            <label for="logDate">Date<span class="req">*</span></label>
+            <label for="logDate">Date</label>
             <input type="date" id="logDate" required>
-            <span class="field-error" id="logDate-error"></span>
           </div>
           <div class="field">
-            <label for="weight">Weight (kg)<span class="req">*</span></label>
+            <label for="weight">Weight (kg)</label>
             <input type="number" id="weight" step="0.1" min="20" max="400" required>
-            <span class="field-error" id="weight-error"></span>
           </div>
         </div>
         <div class="field">
           <label for="bodyFat">Body fat %</label>
           <input type="number" id="bodyFat" step="0.1" min="1" max="70">
-          <span class="field-error" id="bodyFat-error"></span>
         </div>
         <div class="field-row">
           <div class="field">
             <label for="chest">Chest (cm)</label>
-            <input type="number" id="chest" step="0.1" min="20" max="250">
-            <span class="field-error" id="chest-error"></span>
+            <input type="number" id="chest" step="0.1">
           </div>
           <div class="field">
             <label for="waist">Waist (cm)</label>
-            <input type="number" id="waist" step="0.1" min="20" max="250">
-            <span class="field-error" id="waist-error"></span>
+            <input type="number" id="waist" step="0.1">
           </div>
         </div>
         <div class="field-row">
           <div class="field">
             <label for="hip">Hip (cm)</label>
-            <input type="number" id="hip" step="0.1" min="20" max="250">
-            <span class="field-error" id="hip-error"></span>
+            <input type="number" id="hip" step="0.1">
           </div>
           <div class="field">
             <label for="arm">Arm (cm)</label>
-            <input type="number" id="arm" step="0.1" min="10" max="100">
-            <span class="field-error" id="arm-error"></span>
+            <input type="number" id="arm" step="0.1">
           </div>
         </div>
         <div class="field">
           <label for="thigh">Thigh (cm)</label>
-          <input type="number" id="thigh" step="0.1" min="10" max="150">
-          <span class="field-error" id="thigh-error"></span>
+          <input type="number" id="thigh" step="0.1">
         </div>
         <div class="field">
           <label for="notes">Notes</label>
           <textarea id="notes" placeholder="Optional"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary btn-block" id="save-progress-btn">Save entry</button>
+        <button type="submit" class="btn btn-primary btn-block">Save entry</button>
       </form>
     </aside>
   </div>
@@ -108,8 +108,6 @@
 
 <script src="js/db.js"></script>
 <script src="js/nav.js"></script>
-<script src="js/validate.js"></script>
-<script src="js/ui.js"></script>
 <script src="js/progress.js"></script>
 </body>
 </html>

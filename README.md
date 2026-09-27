@@ -1,43 +1,65 @@
-# Aura Fitness 🏋️‍♂️
+# Aura Fitness — HTML/CSS/JS Edition
 
-A complete fitness-tracking web app built entirely with **HTML, CSS, and
-vanilla JavaScript** — no backend, no build step, no dependencies. Just
-open `index.html` and go.
+A full front-end rebuild of the Aura Fitness tracker, converted from the
+original ASP.NET Web Forms + SQL Server design into a static site that
+runs entirely in the browser. No server, database, or build step required.
 
-Log workouts, follow a routine, track your progress, and browse a
-library of 75 exercises across 25 workout types — from Strength and
-HIIT to Yoga, Boxing, and Swimming — each with a step-by-step how-to
-guide and its own illustration.
+## Running it
 
-## ✨ Features
-
-- 🔐 **Accounts & auth** — register, log in, and manage your profile,
-  all stored locally in the browser (`localStorage`)
-- 🏋️ **Workout logging** — log sessions across 25 workout types with
-  live calorie estimates and per-exercise sets/reps/weight tracking
-- 📈 **Progress tracking** — log weight and body measurements, see a
-  trend chart and computed BMI
-- 📅 **Routines** — 7 pre-built training programs with a day-by-day
-  schedule, each pulling from a 75-exercise library
-- 📚 **Exercise library** — searchable and filterable by category,
-  muscle group, and difficulty, with illustrated step-by-step
-  instructions for every movement
-- ✅ **Full client-side validation** — inline field errors, password
-  strength meter, live username/email availability checks
-- 🚀 **One-click demo account** — explore a fully populated account
-  instantly, no signup required
-
-## 🛠️ Tech stack
-
-Pure HTML5, CSS3, and JavaScript (ES6+). No frameworks, no build
-tools, no server — all data persists in the browser via `localStorage`.
-
-## 🚀 Getting started
+Open `index.html` in a browser — that's it. Or serve the folder with any
+static file server if your browser restricts local file access:
 
 ```bash
-git clone https://github.com/<your-username>/aura-fitness.git
-cd aura-fitness
-open index.html   # or just double-click it
+npx serve .
+# or
+python3 -m http.server 8000
 ```
 
-No `npm install`, no server required.
+Then visit the printed URL and register a new account.
+
+## What changed from the original
+
+The original app was ASP.NET Web Forms with an Entity Framework /
+SQL Server backend (Models, DAL services, .aspx pages). This version keeps
+the same feature set and information architecture but moves everything to
+the client:
+
+| Original | Here |
+|---|---|
+| SQL Server + EF (`AuraFitnessContext`) | `localStorage`, wrapped by `js/db.js` |
+| `AuthService` | `AuraDB.registerUser / validateUser / logout` |
+| `WorkoutService` | `AuraDB.createWorkout / getUserWorkouts / ...` |
+| `RoutineService` | `AuraDB.getPredefinedRoutines / assignRoutineToUser / ...` |
+| `ProgressService` | `AuraDB.addProgressLog / getUserProgressHistory / ...` |
+| `Site.Master` navigation | `js/nav.js`, injected into `#app-header` on every page |
+| 9 `.aspx` pages | 8 static `.html` pages (one shared master isn't needed) |
+
+## Pages
+
+- `index.html` — log in
+- `register.html` — create an account
+- `dashboard.html` — monthly stats, recent workouts, active routine
+- `log-workout.html` — log a session with a live calorie estimate
+- `progress.html` — log measurements, see a weight trend and history
+- `routines.html` — browse routines, view a day-by-day schedule, assign one
+- `exercises.html` — searchable/filterable exercise library
+- `profile.html` — edit account details, view account statistics
+
+## Data & accounts
+
+Everything (accounts, workouts, routines assigned, progress logs) is
+stored per-browser in `localStorage` under the key `auraFitnessDB`.
+There's no shared backend, so data does not sync across browsers or
+devices. Clearing site data resets the app back to its seeded exercise
+library and routines, with no accounts.
+
+Password "hashing" here is a simple client-side demo hash, not real
+cryptography — this is a static front-end, not a place to store real
+credentials.
+
+## Notes for going further
+
+If you outgrow `localStorage`, `js/db.js` is written as a single object
+(`AuraDB`) with one function per original service method — swapping its
+internals for `fetch()` calls to a real API is the natural next step,
+without touching any of the page scripts that call it.

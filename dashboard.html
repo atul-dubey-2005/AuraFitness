@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard — Aura Fitness</title>
+<meta name="theme-color" content="#14171a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Aura Fitness — log workouts, track progress and follow routines, right in your browser.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%2314171a%22/%3E%3Cpath d=%22M30 62 L46 62 L40 82 L74 46 L56 46 L64 18 Z%22 fill=%22%23c8ff3d%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -17,11 +25,6 @@
       <p id="dateline"></p>
     </div>
     <a href="log-workout.html" class="btn btn-primary">Log a workout</a>
-  </div>
-
-  <div class="sample-prompt" id="sample-prompt" style="display:none; margin-bottom: 28px;">
-    <p><strong>Nothing logged yet.</strong> Load a few weeks of realistic sample activity to see the dashboard, routine, and progress chart in action.</p>
-    <button type="button" class="btn btn-dark" id="load-sample-btn">Load sample data</button>
   </div>
 
   <div class="stat-grid">
@@ -63,9 +66,10 @@
 
 <footer class="site-foot">Aura Fitness — a client-side fitness tracker. Your data stays in this browser.</footer>
 
+<a href="log-workout.html" class="fab" aria-label="Log a workout">+ Log workout</a>
+
 <script src="js/db.js"></script>
 <script src="js/nav.js"></script>
-<script src="js/ui.js"></script>
 <script src="js/dashboard.js"></script>
 </body>
 </html>

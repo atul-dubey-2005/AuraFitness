@@ -2,29 +2,7 @@
   const user = renderAppHeader('progress.html');
   if (!user) return;
 
-  const R = Validate.rules;
-  const logDateInput = document.getElementById('logDate');
-  const weightInput = document.getElementById('weight');
-  const bodyFatInput = document.getElementById('bodyFat');
-  const chestInput = document.getElementById('chest');
-  const waistInput = document.getElementById('waist');
-  const hipInput = document.getElementById('hip');
-  const armInput = document.getElementById('arm');
-  const thighInput = document.getElementById('thigh');
-
-  logDateInput.value = new Date().toISOString().slice(0, 10);
-
-  const fieldSpecs = [
-    [logDateInput, [R.required, R.notFutureDate]],
-    [weightInput, [R.rangeRequired(20, 400, 'kg')]],
-    [bodyFatInput, [R.range(1, 70, '%')]],
-    [chestInput, [R.range(20, 250, 'cm')]],
-    [waistInput, [R.range(20, 250, 'cm')]],
-    [hipInput, [R.range(20, 250, 'cm')]],
-    [armInput, [R.range(10, 100, 'cm')]],
-    [thighInput, [R.range(10, 150, 'cm')]],
-  ];
-  fieldSpecs.forEach(([input, validators]) => Validate.liveWire(input, validators));
+  document.getElementById('logDate').value = new Date().toISOString().slice(0, 10);
 
   function render() {
     const history = AuraDB.getUserProgressHistory(user.id);
@@ -69,15 +47,15 @@
     if (!history.length) {
       tableHost.innerHTML = `<div class="empty-state"><strong>Nothing logged yet</strong>Use the form to add your first entry.</div>`;
     } else {
-      tableHost.innerHTML = `<table>
+      tableHost.innerHTML = `<table class="responsive-table">
         <thead><tr><th>Date</th><th>Weight</th><th>Body fat</th><th>Notes</th></tr></thead>
         <tbody>
           ${history.slice().reverse().map(r => `
             <tr>
-              <td>${new Date(r.logDate).toLocaleDateString()}</td>
-              <td>${r.weight ? r.weight + ' kg' : '—'}</td>
-              <td>${r.bodyFatPercentage ? r.bodyFatPercentage + '%' : '—'}</td>
-              <td>${r.notes || '—'}</td>
+              <td data-label="Date">${new Date(r.logDate).toLocaleDateString()}</td>
+              <td data-label="Weight">${r.weight ? r.weight + ' kg' : '—'}</td>
+              <td data-label="Body fat">${r.bodyFatPercentage ? r.bodyFatPercentage + '%' : '—'}</td>
+              <td data-label="Notes">${r.notes || '—'}</td>
             </tr>
           `).join('')}
         </tbody>
@@ -89,34 +67,25 @@
 
   const form = document.getElementById('progress-form');
   const msg = document.getElementById('form-msg');
-  const saveBtn = document.getElementById('save-progress-btn');
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    msg.classList.remove('show');
-
-    if (!Validate.validateAll(fieldSpecs)) return;
-
-    setBtnBusy(saveBtn, true, 'Saving…');
-    setTimeout(() => {
-      AuraDB.addProgressLog(user.id, {
-        logDate: logDateInput.value,
-        weight: weightInput.value,
-        bodyFatPercentage: bodyFatInput.value,
-        chest: chestInput.value,
-        waist: waistInput.value,
-        hip: hipInput.value,
-        arm: armInput.value,
-        thigh: thighInput.value,
-        notes: document.getElementById('notes').value.trim(),
-      });
-      Toast.show('Entry saved.', 'success');
-      form.reset();
-      logDateInput.value = new Date().toISOString().slice(0, 10);
-      document.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
-      document.querySelectorAll('.field-error').forEach(el => el.textContent = '');
-      setBtnBusy(saveBtn, false);
-      render();
-    }, 250);
+    AuraDB.addProgressLog(user.id, {
+      logDate: document.getElementById('logDate').value,
+      weight: document.getElementById('weight').value,
+      bodyFatPercentage: document.getElementById('bodyFat').value,
+      chest: document.getElementById('chest').value,
+      waist: document.getElementById('waist').value,
+      hip: document.getElementById('hip').value,
+      arm: document.getElementById('arm').value,
+      thigh: document.getElementById('thigh').value,
+      notes: document.getElementById('notes').value.trim(),
+    });
+    msg.textContent = 'Entry saved.';
+    msg.classList.add('show');
+    form.reset();
+    document.getElementById('logDate').value = new Date().toISOString().slice(0, 10);
+    render();
+    setTimeout(() => msg.classList.remove('show'), 2500);
   });
 })();
