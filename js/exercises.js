@@ -32,19 +32,29 @@
 
     grid.innerHTML = list.map(x => `
       <div class="xcard">
-        <div class="tags">
-          <span class="badge line">${x.category}</span>
-          <span class="badge line">${x.muscleGroup}</span>
-          <span class="badge ${x.difficulty === 'Advanced' ? 'coral' : 'volt'}">${x.difficulty}</span>
+        <div class="xcard-head">
+          <div class="xicon-badge">${ExerciseIcons.svg(x.icon)}</div>
+          <div class="titles">
+            <h3>${x.name}</h3>
+            <div class="tags">
+              <span class="badge line">${x.category}</span>
+              <span class="badge ${x.difficulty === 'Advanced' ? 'coral' : 'volt'}">${x.difficulty}</span>
+            </div>
+          </div>
         </div>
-        <h3>${x.name}</h3>
         <p>${x.description}</p>
         <div class="foot">
-          <span>${x.equipment}</span>
-          <span>~${x.caloriesPerSet} kcal / set</span>
+          <span>${x.equipment} · ~${x.caloriesPerSet} kcal/set</span>
+          <button type="button" class="details-link" data-id="${x.id}">View details</button>
         </div>
       </div>
     `).join('');
+
+    grid.querySelectorAll('.details-link').forEach(btn =>
+      btn.addEventListener('click', () => {
+        const ex = AuraDB.getExerciseById(Number(btn.dataset.id));
+        if (ex) AuraExerciseModal.open(ex);
+      }));
   }
 
   [searchEl, categoryEl, muscleEl, difficultyEl].forEach(el =>

@@ -814,3 +814,194 @@ footer.site-foot{
 @media (max-width: 640px){
   .fab{ display: inline-flex; }
 }
+
+/* ---------- exercise pictograms ---------- */
+
+.xicon-badge{
+  width: 56px; height: 56px;
+  border-radius: var(--radius);
+  background: var(--steel-tint);
+  color: var(--steel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.xicon-badge.lg{ width: 96px; height: 96px; border-radius: var(--radius-lg); }
+.xicon .accent-fill{ fill: var(--volt); stroke: none; }
+.xicon .accent-stroke{ stroke: var(--coral); }
+.xicon .wheel{ fill: none; }
+.xicon .ground{ stroke: var(--line); stroke-width: 3; }
+.xicon .motion{ stroke: var(--line); stroke-width: 3; }
+
+.xcard-head{
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.xcard-head .titles{ flex: 1; min-width: 0; }
+.xcard-head h3{ margin-bottom: 2px; }
+
+/* ---------- modal ---------- */
+
+.modal-backdrop{
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 23, 26, .55);
+  z-index: 60;
+  padding: 24px;
+  padding-top: calc(24px + var(--safe-t));
+  padding-bottom: calc(24px + var(--safe-b));
+  overflow-y: auto;
+  animation: fade-in .18s ease both;
+}
+.modal-backdrop.open{ display: flex; align-items: flex-start; justify-content: center; }
+@keyframes fade-in{ from{ opacity: 0; } to{ opacity: 1; } }
+
+.modal{
+  background: var(--panel-raised);
+  border-radius: var(--radius-lg);
+  max-width: 560px;
+  width: 100%;
+  margin: auto;
+  padding: 28px;
+  box-shadow: var(--shadow-lg);
+  animation: modal-rise .22s var(--ease) both;
+  max-height: 100%;
+}
+@keyframes modal-rise{
+  from{ opacity: 0; transform: translateY(14px) scale(.98); }
+  to{ opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (max-width: 560px){
+  .modal-backdrop{ padding: 0; }
+  .modal{ border-radius: 0; min-height: 100dvh; padding: 22px 18px calc(22px + var(--safe-b)); padding-top: calc(22px + var(--safe-t)); }
+}
+
+.modal-close{
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 36px; height: 36px;
+  min-height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: background .15s ease, color .15s ease;
+}
+.modal-close:hover{ background: var(--ink); color: #fff; border-color: var(--ink); }
+
+.modal-body{ position: relative; }
+.modal-top{
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  padding-right: 30px;
+}
+.modal-top h2{ font-size: 24px; margin-bottom: 6px; }
+
+.modal-section{ margin-bottom: 22px; }
+.modal-section:last-child{ margin-bottom: 0; }
+.modal-section h4{
+  font-size: 12.5px;
+  text-transform: none;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.step-list{
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.step-list li{
+  display: flex;
+  gap: 12px;
+  font-size: 14.5px;
+  color: var(--ink);
+  line-height: 1.45;
+}
+.step-list .num{
+  flex-shrink: 0;
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--volt);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+
+.benefit-list{
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.benefit-list li{
+  display: flex;
+  gap: 10px;
+  font-size: 14.5px;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.benefit-list li::before{
+  content: '';
+  flex-shrink: 0;
+  width: 18px; height: 18px;
+  margin-top: 2px;
+  border-radius: 50%;
+  background: var(--volt);
+  background-image: linear-gradient(135deg, transparent 40%, var(--volt-ink) 40%, var(--volt-ink) 46%, transparent 46%),
+                     linear-gradient(45deg, transparent 55%, var(--volt-ink) 55%, var(--volt-ink) 61%, transparent 61%);
+}
+
+.tip-list{
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tip-list li{
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  padding-left: 14px;
+  border-left: 2px solid var(--coral);
+}
+
+.modal-meta{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.exercise-mini{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.exercise-mini .xicon-badge{ width: 38px; height: 38px; }
+.details-link{
+  background: none; border: none; padding: 0;
+  color: var(--steel);
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}

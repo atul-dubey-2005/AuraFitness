@@ -12,7 +12,7 @@
     return exercises.map(x => `<option value="${x.id}">${x.name}</option>`).join('');
   }
 
-  function addRow() {
+  function addRow(preselectId) {
     rowCount++;
     const id = `row-${rowCount}`;
     const row = document.createElement('div');
@@ -37,12 +37,17 @@
       </div>
       <button type="button" class="remove-row" aria-label="Remove exercise">Remove</button>
     `;
+    if (preselectId) row.querySelector('.ex-select').value = String(preselectId);
     row.querySelector('.remove-row').addEventListener('click', () => row.remove());
     rowsHost.appendChild(row);
   }
 
-  document.getElementById('add-exercise').addEventListener('click', addRow);
-  addRow(); // start with one row
+  document.getElementById('add-exercise').addEventListener('click', () => addRow());
+
+  // deep link from the exercise library / a routine day: log-workout.html?exercise=5
+  const params = new URLSearchParams(window.location.search);
+  const exerciseParam = params.get('exercise');
+  addRow(exerciseParam ? Number(exerciseParam) : null); // start with one row
 
   // live calorie estimate
   const typeEl = document.getElementById('workoutType');

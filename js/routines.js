@@ -83,19 +83,31 @@
       host.innerHTML = `<div class="empty-state"><strong>Rest day</strong>Nothing scheduled — recover or add light mobility work.</div>`;
       return;
     }
-    host.innerHTML = `<table>
-      <thead><tr><th>Exercise</th><th>Category</th><th>Muscle group</th><th>Equipment</th></tr></thead>
+    host.innerHTML = `<table class="responsive-table">
+      <thead><tr><th>Exercise</th><th>Category</th><th>Muscle group</th><th>Equipment</th><th></th></tr></thead>
       <tbody>
         ${exs.map(x => `
           <tr>
-            <td>${x.name}</td>
-            <td>${x.category}</td>
-            <td>${x.muscleGroup}</td>
-            <td>${x.equipment}</td>
+            <td data-label="Exercise">
+              <div class="exercise-mini">
+                <div class="xicon-badge">${ExerciseIcons.svg(x.icon, 26)}</div>
+                <span>${x.name}</span>
+              </div>
+            </td>
+            <td data-label="Category">${x.category}</td>
+            <td data-label="Muscle group">${x.muscleGroup}</td>
+            <td data-label="Equipment">${x.equipment}</td>
+            <td data-label=""><button type="button" class="details-link" data-id="${x.id}">View details</button></td>
           </tr>
         `).join('')}
       </tbody>
     </table>`;
+
+    host.querySelectorAll('.details-link').forEach(btn =>
+      btn.addEventListener('click', () => {
+        const ex = AuraDB.getExerciseById(Number(btn.dataset.id));
+        if (ex) AuraExerciseModal.open(ex);
+      }));
   }
 
   goalFilter.addEventListener('change', renderGrid);
